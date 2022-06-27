@@ -1,6 +1,10 @@
 package com.exam.server.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "users")
@@ -16,6 +20,10 @@ public class User {
     private String phone;
     private boolean isEnabled = true;
     private String profile;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    @JsonIgnore         // donot want to create cyclic dependency
+    private Set<UserRole> userRoles = new HashSet<>();
 
     public String getProfile() {
         return profile;
