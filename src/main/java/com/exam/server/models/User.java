@@ -25,6 +25,14 @@ public class User {
     @JsonIgnore         // donot want to create cyclic dependency
     private Set<UserRole> userRoles = new HashSet<>();
 
+    public Set<UserRole> getUserRoles() {
+        return userRoles;
+    }
+
+    public void setUserRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
+    }
+
     public String getProfile() {
         return profile;
     }
@@ -110,5 +118,21 @@ public class User {
 
     public void setEnabled(boolean enabled) {
         isEnabled = enabled;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phone='" + phone + '\'' +
+                ", isEnabled=" + isEnabled +
+                ", profile='" + profile + '\'' +
+                ", userRoles=" + userRoles +
+                '}';
     }
 }
